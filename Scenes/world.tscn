@@ -471,6 +471,7 @@ texture = ExtResource("3_cwgib")
 0:0/size_in_atlas = Vector2i(2, 2)
 0:0/0 = 0
 0:0/0/texture_origin = Vector2i(-8, 8)
+0:0/0/y_sort_origin = 7
 2:0/0 = 0
 3:0/0 = 0
 4:0/0 = 0
@@ -751,11 +752,8 @@ sources/2 = SubResource("TileSetAtlasSource_y6p6q")
 
 [node name="World" type="Node2D"]
 
-[node name="Player" parent="." instance=ExtResource("1_jnxf1")]
-z_index = 1
-position = Vector2(119, 65)
-
 [node name="TileMap" type="TileMap" parent="."]
+y_sort_enabled = true
 tile_set = SubResource("TileSet_jmrrh")
 format = 2
 layer_0/name = "ground"
@@ -770,7 +768,10 @@ layer_1/tile_data = PackedInt32Array(393221, 393217, 11, 196619, 393217, 11, 131
 layer_2/name = "trees"
 layer_2/enabled = true
 layer_2/modulate = Color(1, 1, 1, 1)
-layer_2/y_sort_enabled = false
+layer_2/y_sort_enabled = true
 layer_2/y_sort_origin = 0
-layer_2/z_index = 0
+layer_2/z_index = 1
 layer_2/tile_data = PackedInt32Array(327682, 1, 0, 131080, 1, 0, 458760, 1, 0)
+
+[node name="Player" parent="TileMap" instance=ExtResource("1_jnxf1")]
+position = Vector2(119, 65)
