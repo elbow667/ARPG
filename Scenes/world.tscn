@@ -1,12 +1,13 @@
-[gd_scene load_steps=12 format=3 uid="uid://by8c2lgaro3wv"]
+[gd_scene load_steps=13 format=3 uid="uid://beypsg4xv7cw"]
 
+[ext_resource type="Script" path="res://Scenes/world.gd" id="1_i0sqt"]
 [ext_resource type="PackedScene" uid="uid://c4a372md1m3u0" path="res://Player/player.tscn" id="1_jnxf1"]
 [ext_resource type="Texture2D" uid="uid://ckhc6rti0m213" path="res://Art/TilesetFloor.png" id="2_u4t3f"]
 [ext_resource type="Texture2D" uid="uid://c5a6yd3nni822" path="res://Art/TilesetNature.png" id="3_cwgib"]
 [ext_resource type="PackedScene" uid="uid://dnc6rt2fjp27b" path="res://Enemies/slime.tscn" id="4_17etb"]
 [ext_resource type="Texture2D" uid="uid://bkji4ldktdd1w" path="res://Art/AnimatedFlower.png" id="4_nh6lk"]
 [ext_resource type="Script" path="res://Scenes/FollowCam.gd" id="5_p4jgv"]
-[ext_resource type="PackedScene" uid="uid://dp0pm36n1gakf" path="res://Scenes/hearts_container.tscn" id="7_o16v6"]
+[ext_resource type="PackedScene" uid="uid://bafmdillv4c2c" path="res://Gui/hearts_container.tscn" id="7_o16v6"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lxn3k"]
 texture = ExtResource("2_u4t3f")
@@ -2462,6 +2463,7 @@ sources/1 = SubResource("TileSetAtlasSource_u3d1o")
 sources/2 = SubResource("TileSetAtlasSource_y6p6q")
 
 [node name="World" type="Node2D"]
+script = ExtResource("1_i0sqt")
 
 [node name="TileMap" type="TileMap" parent="."]
 y_sort_enabled = true
@@ -2505,9 +2507,7 @@ position = Vector2(-52, 22)
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="HeartsContainer" parent="CanvasLayer" instance=ExtResource("7_o16v6")]
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -52.0
-offset_right = 0.0
-grow_horizontal = 0
+anchors_preset = 0
+anchor_left = 0.0
+anchor_right = 0.0
+grow_horizontal = 1
