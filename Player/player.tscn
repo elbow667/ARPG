@@ -105,6 +105,21 @@ size = Vector2(15, 4)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_b6cpy"]
 size = Vector2(14, 14)
 
+[sub_resource type="Animation" id="Animation_h5x44"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D/ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 0, 0, 0)]
+}
+
 [sub_resource type="Animation" id="Animation_5ruqp"]
 resource_name = "hurtBlink"
 length = 0.4
@@ -121,21 +136,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Color(1, 0, 0, 0.501961), Color(1, 1, 1, 1)]
-}
-
-[sub_resource type="Animation" id="Animation_h5x44"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D/ColorRect:color")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 0, 0, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_n6gdd"]
@@ -161,7 +161,7 @@ offset_left = -20.0
 offset_top = -27.0
 offset_right = 20.0
 offset_bottom = 13.0
-color = Color(1, 0, 0, 0.501961)
+color = Color(1, 0, 0, 0)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -185,6 +185,8 @@ libraries = {
 }
 
 [node name="hurtTimer" type="Timer" parent="."]
+wait_time = 1.251
 one_shot = true
 
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]
+[connection signal="area_exited" from="Hurtbox" to="." method="_on_hurtbox_area_exited"]
