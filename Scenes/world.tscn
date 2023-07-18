@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://beypsg4xv7cw"]
+[gd_scene load_steps=16 format=3 uid="uid://beypsg4xv7cw"]
 
 [ext_resource type="Script" path="res://Scenes/world.gd" id="1_i0sqt"]
 [ext_resource type="PackedScene" uid="uid://c4a372md1m3u0" path="res://Player/player.tscn" id="1_jnxf1"]
@@ -6,7 +6,9 @@
 [ext_resource type="Texture2D" uid="uid://c5a6yd3nni822" path="res://Art/TilesetNature.png" id="3_cwgib"]
 [ext_resource type="PackedScene" uid="uid://dnc6rt2fjp27b" path="res://Enemies/slime.tscn" id="4_17etb"]
 [ext_resource type="Texture2D" uid="uid://bkji4ldktdd1w" path="res://Art/AnimatedFlower.png" id="4_nh6lk"]
+[ext_resource type="PackedScene" uid="uid://ccmkm82cadgma" path="res://Scenes/lifepot.tscn" id="5_05rey"]
 [ext_resource type="Script" path="res://Scenes/FollowCam.gd" id="5_p4jgv"]
+[ext_resource type="PackedScene" uid="uid://bs6m10tnt8tmh" path="res://Scenes/sword.tscn" id="6_rhttb"]
 [ext_resource type="PackedScene" uid="uid://bafmdillv4c2c" path="res://Gui/hearts_container.tscn" id="7_o16v6"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lxn3k"]
@@ -2448,6 +2450,11 @@ texture = ExtResource("4_nh6lk")
 0:0/0/physics_layer_0/angular_velocity = 0.0
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-6.5, -1.5, 6, -1.5, 8, 8, -8, 8)
 
+[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_md6i1"]
+resource_name = "Collectables"
+scenes/1/scene = ExtResource("5_05rey")
+scenes/2/scene = ExtResource("6_rhttb")
+
 [sub_resource type="TileSet" id="TileSet_jmrrh"]
 physics_layer_0/collision_layer = 3
 physics_layer_0/collision_mask = 3
@@ -2461,6 +2468,7 @@ terrain_set_0/terrain_2/color = Color(0.184314, 0.321569, 0.886275, 1)
 sources/0 = SubResource("TileSetAtlasSource_lxn3k")
 sources/1 = SubResource("TileSetAtlasSource_u3d1o")
 sources/2 = SubResource("TileSetAtlasSource_y6p6q")
+sources/3 = SubResource("TileSetScenesCollectionSource_md6i1")
 
 [node name="World" type="Node2D"]
 script = ExtResource("1_i0sqt")
@@ -2485,6 +2493,13 @@ layer_2/y_sort_enabled = true
 layer_2/y_sort_origin = 0
 layer_2/z_index = 1
 layer_2/tile_data = PackedInt32Array(327682, 1, 0, 131080, 1, 0, 458760, 1, 0, 393220, 2, 0, 262155, 2, 0, 65549, 2, 0, 65538, 2, 0, 1114132, 655361, 12, 983057, 655361, 12, 917526, 655361, 12)
+layer_3/name = "collectables"
+layer_3/enabled = true
+layer_3/modulate = Color(1, 1, 1, 1)
+layer_3/y_sort_enabled = false
+layer_3/y_sort_origin = 0
+layer_3/z_index = 0
+layer_3/tile_data = PackedInt32Array(327689, 3, 65536, 393223, 3, 65536, 131084, 3, 65536, 196612, 3, 65536, 327686, 3, 131072, 196618, 3, 131072, 327694, 3, 131072, 393227, 3, 131072)
 
 [node name="Player" parent="TileMap" instance=ExtResource("1_jnxf1")]
 position = Vector2(119, 65)
