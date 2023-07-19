@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://beypsg4xv7cw"]
+[gd_scene load_steps=18 format=3 uid="uid://beypsg4xv7cw"]
 
 [ext_resource type="Script" path="res://Scenes/world.gd" id="1_i0sqt"]
 [ext_resource type="PackedScene" uid="uid://c4a372md1m3u0" path="res://Player/player.tscn" id="1_jnxf1"]
@@ -10,6 +10,8 @@
 [ext_resource type="Script" path="res://Scenes/FollowCam.gd" id="5_p4jgv"]
 [ext_resource type="PackedScene" uid="uid://bs6m10tnt8tmh" path="res://Scenes/sword.tscn" id="6_rhttb"]
 [ext_resource type="PackedScene" uid="uid://bafmdillv4c2c" path="res://Gui/hearts_container.tscn" id="7_o16v6"]
+[ext_resource type="Script" path="res://Scenes/CanvasLayer.gd" id="10_is5pt"]
+[ext_resource type="PackedScene" uid="uid://cvk6jhac54a8i" path="res://Scenes/inventory_gui.tscn" id="11_eavhg"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lxn3k"]
 texture = ExtResource("2_u4t3f")
@@ -2522,9 +2524,27 @@ endPoint = NodePath("Marker2D")
 position = Vector2(-52, 22)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+process_mode = 3
+script = ExtResource("10_is5pt")
 
 [node name="HeartsContainer" parent="CanvasLayer" instance=ExtResource("7_o16v6")]
 anchors_preset = 0
 anchor_left = 0.0
 anchor_right = 0.0
 grow_horizontal = 1
+
+[node name="InventoryGui" parent="CanvasLayer" instance=ExtResource("11_eavhg")]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[connection signal="closed" from="CanvasLayer/InventoryGui" to="." method="_on_inventory_gui_closed"]
+[connection signal="opened" from="CanvasLayer/InventoryGui" to="." method="_on_inventory_gui_opened"]
