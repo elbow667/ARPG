@@ -1,7 +1,8 @@
-[gd_scene load_steps=14 format=3 uid="uid://c4a372md1m3u0"]
+[gd_scene load_steps=15 format=3 uid="uid://c4a372md1m3u0"]
 
 [ext_resource type="Script" path="res://Player/player.gd" id="1_c4f1a"]
 [ext_resource type="Texture2D" uid="uid://d13011p7bsgbo" path="res://Art/SpriteSheet.png" id="1_nc7bo"]
+[ext_resource type="Resource" uid="uid://ccl2yo4lbfsk5" path="res://Inventory/playerInventory.tres" id="2_w6636"]
 
 [sub_resource type="Animation" id="Animation_4awab"]
 length = 0.001
@@ -148,6 +149,7 @@ _data = {
 z_index = 1
 y_sort_enabled = true
 script = ExtResource("1_c4f1a")
+inventory = ExtResource("2_w6636")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 clip_children = 2
