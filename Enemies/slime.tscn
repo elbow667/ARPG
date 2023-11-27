@@ -1,7 +1,8 @@
-[gd_scene load_steps=11 format=3 uid="uid://dnc6rt2fjp27b"]
+[gd_scene load_steps=14 format=3 uid="uid://dnc6rt2fjp27b"]
 
 [ext_resource type="Script" path="res://Enemies/slime.gd" id="1_5qkxs"]
 [ext_resource type="Texture2D" uid="uid://djk5q824lm1rv" path="res://Art/Slime.png" id="1_mky1d"]
+[ext_resource type="Texture2D" uid="uid://bqt4j3kk6ve4b" path="res://Art/smoke_effect.png" id="3_h8u75"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_banbe"]
 radius = 4.0
@@ -44,6 +45,42 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("DeathEffect:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Sprite2D:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("DeathEffect:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
 }
 
 [sub_resource type="Animation" id="Animation_so8su"]
@@ -214,9 +251,50 @@ tracks/2/keys = {
 "values": [Vector2(1, 1), Vector2(1.3, 0.9), Vector2(1.2, 0.933333), Vector2(1, 1)]
 }
 
+[sub_resource type="Animation" id="Animation_pi0yy"]
+resource_name = "death"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("DeathEffect:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("DeathEffect:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_0wq5s"]
 _data = {
 "RESET": SubResource("Animation_rdwin"),
+"death": SubResource("Animation_pi0yy"),
 "walkDown": SubResource("Animation_so8su"),
 "walkLeft": SubResource("Animation_tsavu"),
 "walkRight": SubResource("Animation_lsg3y"),
@@ -226,6 +304,10 @@ _data = {
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1ufu8"]
 radius = 4.0
 height = 14.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_n6te4"]
+radius = 8.0
+height = 20.0
 
 [node name="slime" type="CharacterBody2D"]
 z_index = 1
@@ -252,8 +334,27 @@ libraries = {
 }
 
 [node name="HitBox" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
 position = Vector2(0, -4)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_1ufu8")
+
+[node name="HurtBox" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
+position = Vector2(0, -7)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_n6te4")
+
+[node name="DeathEffect" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(0, -11)
+texture = ExtResource("3_h8u75")
+hframes = 6
+
+[connection signal="area_entered" from="HurtBox" to="." method="_on_hurt_box_area_entered"]

@@ -8,7 +8,8 @@ signal healthChanged
 @onready var effects: = $Effects
 @onready var hurtBox: = $Hurtbox
 @onready var hurtTimer: = $hurtTimer
-@onready var weapon = $weapon
+@onready var weapon: Node2D = $weapon
+
 
 @export var maxHealth: int = 3
 @onready var currentHealth: int = maxHealth
@@ -25,7 +26,7 @@ var isAttacking: bool = false
 
 func _ready():
 	effects.play("RESET")
-	weapon.visible = false
+	weapon.disable()
 	
 func handleInput():
 	var moveDirection = Input.get_vector("left", "right", "up", "down")
@@ -37,9 +38,9 @@ func handleInput():
 func attack():
 	animations.play("attack"+ lastAnimDirection) # play attack animation
 	isAttacking = true
-	weapon.visible = true
+	weapon.enable()
 	await animations.animation_finished
-	weapon.visible = false
+	weapon.disable()
 	isAttacking = false
 	
 func updateAnimation():

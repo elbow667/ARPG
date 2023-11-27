@@ -1,11 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://03kw1lfjmbow"]
+[gd_scene load_steps=4 format=3 uid="uid://03kw1lfjmbow"]
 
 [ext_resource type="Texture2D" uid="uid://11xm4l4d17om" path="res://Art/Sword.png" id="1_gf747"]
+[ext_resource type="Script" path="res://Scenes/weapon_sword.gd" id="1_vovrn"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_46262"]
 size = Vector2(4, 8)
 
 [node name="sword" type="Area2D"]
+script = ExtResource("1_vovrn")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, -5.5)
