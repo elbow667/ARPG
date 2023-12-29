@@ -60,7 +60,7 @@ func updateAnimation():
 		
 func handleCollision():
 	for i in get_slide_collision_count():
-		var collision = get_slide_collision(i)
+		var _collision = get_slide_collision(i)
 		#var collider = collision.get_collider()
 		#print_debug(collider.name)
 		
@@ -103,6 +103,6 @@ func knockback(enemyVelocity):
 	
 
 
-func _on_hurtbox_area_exited(area):
+func _on_hurtbox_area_exited(_area):
 	pass
 
