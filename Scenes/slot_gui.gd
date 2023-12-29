@@ -9,3 +9,13 @@ func insert(isg: ItemStackGui):
 	itemStackGui = isg
 	backgroundSprite.frame = 1
 	container.add_child(itemStackGui)
+
+
+func takeItem():
+	var item = itemStackGui
+	
+	container.remove_child(itemStackGui)
+	itemStackGui = null
+	backgroundSprite.frame = 0
+	
+	return item

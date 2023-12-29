@@ -9,6 +9,8 @@ var isOpen: bool = false
 @onready var ItemStackGuiClass = preload("res://Gui/itemStackGui.tscn")
 @onready var slots: Array = $NinePatchRect/GridContainer.get_children()
 
+var itemInHand: ItemStackGui
+
 func _ready():
 	connectSlots()
 	inventory.updated.connect(update)
@@ -45,4 +47,6 @@ func close():
 	closed.emit()
 
 func onSlotClicked(slot):
-	pass
+	itemInHand = slot.takeItem()
+	add_child(itemInHand)
+	
