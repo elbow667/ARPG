@@ -18,9 +18,13 @@ func insert(isg: ItemStackGui):
 	
 	inventory.insertSlot(index, itemStackGui.inventorySlot)
 
+
+
 func takeItem():
 	var item = itemStackGui
-#problems starting 8:52 into video #26
+	
+	inventory.removeSlot(itemStackGui.inventorySlot)
+	
 	container.remove_child(itemStackGui)
 	itemStackGui = null
 	backgroundSprite.frame = 0

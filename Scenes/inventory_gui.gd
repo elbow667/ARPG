@@ -50,11 +50,22 @@ func close():
 	closed.emit()
 
 func onSlotClicked(slot):
-	if slot.isEmpty() && itemInHand:
+	if slot.isEmpty():
+		if !itemInHand: return
+		
 		insertItemInSlot(slot)
 		return
+		
 	if !itemInHand:
 		takeItemFromSlot(slot)
+		return
+	
+	if slot.itemStackGui.inventorySlot.item.name == itemInHand.inventorySlot.item.name:
+		stackItems(slot)
+		return
+		
+	swapItems(slot)
+	
 
 func takeItemFromSlot(slot):
 	itemInHand = slot.takeItem()
@@ -69,6 +80,35 @@ func insertItemInSlot(slot):
 	
 	slot.insert(item)
 	
+func swapItems(slot):
+	var tempItem = slot.takeItem()
+	insertItemInSlot(slot)
+	
+	itemInHand = tempItem
+	add_child(itemInHand)
+	updateItemInHand()
+
+func stackItems(slot):
+	var slotItem: ItemStackGui = slot.itemStackGui
+	var maxAmount = slotItem.inventorySlot.item.maxAmountPerStack
+	var totalAmount = slotItem.inventorySlot.amount + itemInHand.inventorySlot.amount
+	
+	if slotItem.inventorySlot.amount == maxAmount:
+		swapItems(slot)
+		return
+	
+	if totalAmount <= maxAmount:
+		slotItem.inventorySlot.amount = totalAmount
+		remove_child(itemInHand)
+		itemInHand = null
+	else:
+		slotItem.inventorySlot.amount = maxAmount
+		itemInHand.inventorySlot.amount = totalAmount - maxAmount
+	
+	slotItem.update()
+	if itemInHand: itemInHand.update()
+		
+
 
 func updateItemInHand():
 	if !itemInHand: return

@@ -1,27 +1,33 @@
-[gd_resource type="Resource" script_class="Inventory" load_steps=18 format=3 uid="uid://ccl2yo4lbfsk5"]
+[gd_resource type="Resource" script_class="Inventory" load_steps=19 format=3 uid="uid://ccl2yo4lbfsk5"]
 
 [ext_resource type="Script" path="res://Inventory/inventorySlot.gd" id="2_6lya3"]
+[ext_resource type="Resource" uid="uid://cvgydnwqs56xl" path="res://Inventory/Items/lifepot.tres" id="2_hjiwl"]
 [ext_resource type="Script" path="res://Inventory/inventory.gd" id="3_baxn0"]
 
 [sub_resource type="Resource" id="Resource_f2bug"]
 script = ExtResource("2_6lya3")
-amount = 0
+item = ExtResource("2_hjiwl")
+amount = 4
 
 [sub_resource type="Resource" id="Resource_cl876"]
 script = ExtResource("2_6lya3")
-amount = 0
+item = ExtResource("2_hjiwl")
+amount = 4
 
 [sub_resource type="Resource" id="Resource_80lg0"]
 script = ExtResource("2_6lya3")
-amount = 0
+item = ExtResource("2_hjiwl")
+amount = 2
 
 [sub_resource type="Resource" id="Resource_yegqm"]
 script = ExtResource("2_6lya3")
-amount = 0
+item = ExtResource("2_hjiwl")
+amount = 5
 
 [sub_resource type="Resource" id="Resource_ny5bf"]
 script = ExtResource("2_6lya3")
-amount = 0
+item = ExtResource("2_hjiwl")
+amount = 8
 
 [sub_resource type="Resource" id="Resource_g0q6i"]
 script = ExtResource("2_6lya3")
